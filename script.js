@@ -13,18 +13,10 @@ function clickButton() {
     nextTurn();
 };
 
-// Button click Event Listener
-const wrapper = document.querySelector('wrapper');
-
-/* wrapper.addEventListener('click', (event) => {
-    const isButton = event.target.nodeName === 'BUTTON';
-    if (!isButton) {
-        return;
-    }
-    clickButton();
-}); */
+//Select all buttons with id starting with 'btn'
 const buttons = document.querySelectorAll('button[id^=btn]');
 
+// Loop through each button and apply the Event Listener to each individual button
 buttons.forEach(button => {
     button.addEventListener('click', event => {
         clickButton();
