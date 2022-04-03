@@ -16,11 +16,12 @@ function clickButton() {
 //Select all buttons with id starting with 'btn'
 const buttons = document.querySelectorAll('button');
 
-// Loop through each button and apply the Event Listener to each individual button, setting he active button to a variable that can be selected in the clickButton function
+// Loop through each button and apply the Event Listener to each individual button, setting he active button to a variable that can be selected in the clickButton function and disables the button
 let activeButton;
 buttons.forEach(button => {
     button.addEventListener('click', event => {
         activeButton = button;
         clickButton();
+        button.disabled = true;
     });
 });
