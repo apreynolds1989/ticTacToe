@@ -5,32 +5,20 @@ const cells = [];
 for (let i = 0; i < 9; i++) {
     let newCell = document.createElement('div');
     newCell.classList.add('cell');
-    board.appendChild(newCell);
-    let newButton = document.createElement('button');
-    newCell.appendChild(newButton);
     newCell.id = 'cell' + i;
+    let newButton = document.createElement('button');
+    newButton.classList.add('btn' + i);
+    board.appendChild(newCell);
+    newCell.appendChild(newButton);
     cells.push(newCell);
 };
-console.log(cells);
 
 // Function to increase turn counter
 let turnCounter = 1;
 const nextTurn = () => turnCounter++;
 
-// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to
-function clickButton() {
-    let closestCell = activeButton.closest('.cell');
-    if (turnCounter % 2 === 0) {
-        closestCell.classList.add('circle');
-    } else {
-        closestCell.classList.add('x');
-    };
-    nextTurn();
-};
-
-//Select all buttons with id starting with 'btn'
+//Begin creating active buttons
 const buttons = document.querySelectorAll('button');
-
 // Loop through each button and apply the Event Listener to each individual button, setting he active button to a variable that can be selected in the clickButton function and disables the button
 let activeButton;
 buttons.forEach(button => {
@@ -40,3 +28,34 @@ buttons.forEach(button => {
         button.disabled = true;
     });
 });
+
+//Function to create a comparable cell value for x's
+function setCellValueX() {
+    for (i = 0; i < 9; i++) {
+        if (activeButton.classList.contains('btn' + i)) {
+            cells[i] = 'x';
+            console.log(cells);
+        };
+    };
+};
+//Function to set a comparable cell value for circles 
+function setCellValueCircle() {
+    for (i = 0; i < 9; i++) {
+        if (activeButton.classList.contains('btn' + i)) {
+            cells[i] = 'circle';
+            console.log(cells);
+        };
+    };
+};
+// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to
+function clickButton() {
+    let closestCell = activeButton.closest('.cell');
+    if (turnCounter % 2 === 0) {
+        closestCell.classList.add('circle');
+        setCellValueCircle();
+    } else {
+        closestCell.classList.add('x');
+        setCellValueX();
+    };
+    nextTurn();
+};
