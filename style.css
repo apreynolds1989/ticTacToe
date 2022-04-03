@@ -11,6 +11,7 @@
 
 body {
     margin: 0;
+    background-color: blue;
 }
 
 #board {
@@ -32,10 +33,18 @@ button {
     cursor: pointer;
 }
 
+button.restartButton {
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5%;
+}
+
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 2px solid black;
+    border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +83,7 @@ button {
     position: absolute;
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
-    background-color: red;
+    background-color: white;
 }
 
 .cell.x::before {
@@ -95,11 +104,11 @@ button {
 .cell.circle::before {
     width: var(--mark-size);
     height: var(--mark-size);
-    background-color: red;
+    background-color: white;
 }
 
 .cell.circle::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
-    background-color: white;
+    background-color: blue;
 }

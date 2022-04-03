@@ -1,3 +1,18 @@
+// Create Array of cells
+const board = document.querySelector('#board');
+const cells = [];
+
+for (let i = 0; i < 9; i++) {
+    let newCell = document.createElement('div');
+    newCell.classList.add('cell');
+    board.appendChild(newCell);
+    let newButton = document.createElement('button');
+    newCell.appendChild(newButton);
+    newCell.id = 'cell' + i;
+    cells.push(newCell);
+};
+console.log(cells);
+
 // Function to increase turn counter
 let turnCounter = 1;
 const nextTurn = () => turnCounter++;
