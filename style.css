@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-* {
-    border: 2px solid red;
-}
-
 :root {
     --cell-size: 100px;
     --mark-size: calc(var(--cell-size) * .9);
@@ -73,6 +69,7 @@ button.restartButton {
     font-size: x-large;
     border: 1px solid white;
     border-radius: 5%;
+    cursor: pointer;
 }
 
 .cell {
