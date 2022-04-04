@@ -1,34 +1,49 @@
 // Create Array of cells
 const board = document.querySelector('#board');
-const cells = [];
+let cells = [];
+let activeButton;
 
-//Will create 9 divs, each with class of cell and id of cell+i, appended to div#board, each cell will have a button appended to it with a class of btn+i. All new cells will be pushed to the cells array to be compared by another function
-for (let i = 0; i < 9; i++) {
-    let newCell = document.createElement('div');
-    newCell.classList.add('cell');
-    newCell.id = 'cell' + i;
-    let newButton = document.createElement('button');
-    newButton.classList.add('btn' + i);
-    board.appendChild(newCell);
-    newCell.appendChild(newButton);
-    cells.push(newCell);
-};
+createGame();
+let reset = document.querySelector('.restartButton');
+reset.addEventListener('click', () => {
+    restartGame();
+});
 
 // Function to increase turn counter
 let turnCounter = 1;
 const nextTurn = () => turnCounter++;
 
+//Will create 9 divs, each with class of cell and id of cell+i, appended to div#board, each cell will have a button appended to it with a class of btn+i. All new cells will be pushed to the cells array to be compared by another function
+function createGame() {
+    for (let i = 0; i < 9; i++) {
+        let newCell = document.createElement('div');
+        newCell.classList.add('cell');
+        newCell.id = 'cell' + i;
+        let newButton = document.createElement('button');
+        newButton.classList.add('btn' + i);
+        board.appendChild(newCell);
+        newCell.appendChild(newButton);
+        cells.push(newCell);
+    };
+    activateButtons();
+};
+
 //Begin creating active buttons
-const buttons = document.querySelectorAll('button');
+
 // Loop through each button and apply the Event Listener to each individual button, setting he active button to a variable that can be selected in the clickButton function and disables the button
-let activeButton;
-buttons.forEach(button => {
-    button.addEventListener('click', event => {
-        activeButton = button;
-        clickButton();
-        button.disabled = true;
+
+function activateButtons() {
+    const buttons = document.querySelectorAll('button[class^="btn"]');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            activeButton = button;
+            clickButton();
+            button.disabled = true;
+        });
     });
-});
+};
+
+
 
 //Function to create a comparable cell value for x's
 function setCellValueX() {
@@ -46,7 +61,7 @@ function setCellValueCircle() {
         };
     };
 };
-// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to. If a winner has been found, label the winner Cell otherwise next turn
+// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to. If a winner has been found, label the winner Cell and show the winner otherwise next turn
 function clickButton() {
     let closestCell = activeButton.closest('.cell');
     if (turnCounter % 2 === 0) {
@@ -133,25 +148,49 @@ function checkWinnerCircle() {
 };
 
 //Function that can be called to remove buttons when necessary, selects all buttons with a class starting with 'btn' loops through each one and disables it
-let removeButtons = document.querySelectorAll("button[class^='btn']");
+let gameButtons = document.querySelectorAll("button[class^='btn']");
 
 function disableButtons() {
-    removeButtons.forEach(removeButton => {
-        removeButton.disabled = true;
+    gameButtons.forEach(gameButton => {
+        gameButton.disabled = true;
     });
 };
 
-//Function to show Winner text and Restart button
+//Function to show Winner text
 function showStuff() {
     document.querySelector('.winner').style.display = 'flex';
-    document.querySelector('.winnerDeclaration').style.display = 'flex';
 };
 
+function hideStuff() {
+    document.querySelector('.winner').style.display = 'none';
+};
+
+let labelWinner = document.querySelector('.winnerCell');
+
 function labelWinnerCell() {
-    let labelWinner = document.querySelector('.winnerCell');
     if (winner === 'x') {
         labelWinner.classList.add('x');
     } else if (winner === 'circle') {
         labelWinner.classList.add('circle');
     };
 };
+
+function unlabelWinnerCell() {
+    if (winner === 'x') {
+        labelWinner.classList.remove('x');
+    } else if (winner === 'circle') {
+        labelWinner.classList.remove('circle');
+    };
+};
+
+function restartGame() {
+    unlabelWinnerCell();
+    winner = '';
+    turnCounter = 1;
+    hideStuff();
+    while (board.firstChild) {
+        board.removeChild(board.firstChild);
+    }
+    cells = [];
+    createGame();
+}

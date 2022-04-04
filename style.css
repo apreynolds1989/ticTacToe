@@ -39,8 +39,9 @@ h1 {
     font-size: xx-large;
 }
 
-.winnerDeclaration {
-    display: none;
+.restart {
+    margin-top: 50px;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
