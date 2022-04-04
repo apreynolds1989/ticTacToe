@@ -152,7 +152,6 @@ button.restartButton {
     justify-content: center;
     align-items: center;
     position: relative;
-    cursor: pointer;
 }
 
 .winnerCell.x::before,
