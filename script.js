@@ -53,9 +53,79 @@ function clickButton() {
     if (turnCounter % 2 === 0) {
         closestCell.classList.add('circle');
         setCellValueCircle();
+        checkWinnerCircle();
     } else {
         closestCell.classList.add('x');
         setCellValueX();
+        checkWinnerX();
     };
     nextTurn();
+};
+
+let winner = '';
+
+function checkWinnerX() {
+    switch (true) {
+        case (cells[0] === 'x' && cells[0] === cells[1] && cells[1] === cells[2]):
+            winner = 'x';
+            break;
+        case (cells[3] === 'x' && cells[3] === cells[4] && cells[4] === cells[5]):
+            winner = 'x';
+            break;
+        case (cells[6] === 'x' && cells[6] === cells[7] && cells[7] === cells[8]):
+            winner = 'x';
+            break;
+        case (cells[0] === 'x' && cells[0] === cells[3] && cells[3] === cells[6]):
+            winner = 'x';
+            break;
+        case (cells[1] === 'x' && cells[1] === cells[4] && cells[4] === cells[7]):
+            winner = 'x';
+            break;
+        case (cells[2] === 'x' && cells[2] === cells[5] && cells[5] === cells[7]):
+            winner = 'x';
+            break;
+        case (cells[0] === 'x' && cells[0] === cells[4] && cells[4] === cells[8]):
+            winner = 'x';
+            break;
+        case (cells[2] === 'x' && cells[2] === cells[4] && cells[4] === cells[6]):
+            winner = 'x';
+            break;
+        default:
+            winner = false;
+            break;
+    };
+    console.log(winner);
+};
+
+function checkWinnerCircle() {
+    switch (true) {
+        case (cells[0] === 'circle' && cells[0] === cells[1] && cells[1] === cells[2]):
+            winner = 'circle';
+            break;
+        case (cells[3] === 'circle' && cells[3] === cells[4] && cells[4] === cells[5]):
+            winner = 'circle';
+            break;
+        case (cells[6] === 'circle' && cells[6] === cells[7] && cells[7] === cells[8]):
+            winner = 'circle';
+            break;
+        case (cells[0] === 'circle' && cells[0] === cells[3] && cells[3] === cells[6]):
+            winner = 'circle';
+            break;
+        case (cells[1] === 'circle' && cells[1] === cells[4] && cells[4] === cells[7]):
+            winner = 'circle';
+            break;
+        case (cells[2] === 'circle' && cells[2] === cells[5] && cells[5] === cells[7]):
+            winner = 'circle';
+            break;
+        case (cells[0] === 'circle' && cells[0] === cells[4] && cells[4] === cells[8]):
+            winner = 'circle';
+            break;
+        case (cells[2] === 'circle' && cells[2] === cells[4] && cells[4] === cells[6]):
+            winner = 'circle';
+            break;
+        default:
+            winner = false;
+            break;
+    };
+    console.log(winner);
 };
