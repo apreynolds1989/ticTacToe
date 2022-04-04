@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
+* {
+    border: 2px solid red;
+}
+
 :root {
     --cell-size: 100px;
     --mark-size: calc(var(--cell-size) * .9);
+    --winner-cell-size: 50px;
+    --winner-mark-size: calc(var(--winner-cell-size) * .9);
 }
 
 body {
@@ -14,9 +20,34 @@ body {
     background-color: blue;
 }
 
+h1 {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.winner {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.winnerText {
+    padding-left: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: xx-large;
+}
+
+.winnerDeclaration {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 #board {
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -25,7 +56,7 @@ body {
     grid-template-columns: repeat(3, auto);
 }
 
-button {
+button[class^='btn'] {
     width: var(--mark-size);
     height: var(--mark-size);
     background-color: transparent;
@@ -34,9 +65,11 @@ button {
 }
 
 button.restartButton {
-    height: 40px;
+    width: 100px;
+    height: 50px;
     background-color: black;
     color: white;
+    font-size: x-large;
     border: 1px solid white;
     border-radius: 5%;
 }
@@ -110,5 +143,52 @@ button.restartButton {
 .cell.circle::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
+    background-color: blue;
+}
+
+.winnerCell {
+    width: var(--winner-cell-size);
+    height: var(--winner-cell-size);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.winnerCell.x::before,
+.winnerCell.x::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--winner-mark-size) * .15);
+    height: var(--winner-mark-size);
+    background-color: white;
+}
+
+.winnerCell.x::before {
+    transform: rotate(45deg);
+}
+
+.winnerCell.x::after {
+    transform: rotate(-45deg);
+}
+
+.winnerCell.circle::before,
+.winnerCell.circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.winnerCell.circle::before {
+    width: var(--winner-mark-size);
+    height: var(--winner-mark-size);
+    background-color: white;
+}
+
+.winnerCell.circle::after {
+    width: calc(var(--winner-mark-size) * .7);
+    height: calc(var(--winner-mark-size) * .7);
     background-color: blue;
 }

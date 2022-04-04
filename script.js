@@ -2,6 +2,7 @@
 const board = document.querySelector('#board');
 const cells = [];
 
+//Will create 9 divs, each with class of cell and id of cell+i, appended to div#board, each cell will have a button appended to it with a class of btn+i. All new cells will be pushed to the cells array to be compared by another function
 for (let i = 0; i < 9; i++) {
     let newCell = document.createElement('div');
     newCell.classList.add('cell');
@@ -34,7 +35,6 @@ function setCellValueX() {
     for (i = 0; i < 9; i++) {
         if (activeButton.classList.contains('btn' + i)) {
             cells[i] = 'x';
-            console.log(cells);
         };
     };
 };
@@ -43,11 +43,10 @@ function setCellValueCircle() {
     for (i = 0; i < 9; i++) {
         if (activeButton.classList.contains('btn' + i)) {
             cells[i] = 'circle';
-            console.log(cells);
         };
     };
 };
-// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to
+// Function for clicking a button and showing result, selects the closest cell class to add the desired choice to. If a winner has been found, label the winner Cell otherwise next turn
 function clickButton() {
     let closestCell = activeButton.closest('.cell');
     if (turnCounter % 2 === 0) {
@@ -59,9 +58,14 @@ function clickButton() {
         setCellValueX();
         checkWinnerX();
     };
+    if (winner === 'x' || winner === 'circle') {
+        labelWinnerCell();
+        showStuff();
+    }
     nextTurn();
 };
 
+//Create functions to check win conditions. If the case is true, will set value of winner variable to 'x' or 'circle'
 let winner = '';
 
 function checkWinnerX() {
@@ -94,7 +98,6 @@ function checkWinnerX() {
             winner = false;
             break;
     };
-    console.log(winner);
 };
 
 function checkWinnerCircle() {
@@ -127,5 +130,28 @@ function checkWinnerCircle() {
             winner = false;
             break;
     };
-    console.log(winner);
+};
+
+//Function that can be called to remove buttons when necessary, selects all buttons with a class starting with 'btn' loops through each one and disables it
+let removeButtons = document.querySelectorAll("button[class^='btn']");
+
+function disableButtons() {
+    removeButtons.forEach(removeButton => {
+        removeButton.disabled = true;
+    });
+};
+
+//Function to show Winner text and Restart button
+function showStuff() {
+    document.querySelector('.winner').style.display = 'flex';
+    document.querySelector('.winnerDeclaration').style.display = 'flex';
+};
+
+function labelWinnerCell() {
+    let labelWinner = document.querySelector('.winnerCell');
+    if (winner === 'x') {
+        labelWinner.classList.add('x');
+    } else if (winner === 'circle') {
+        labelWinner.classList.add('circle');
+    };
 };
