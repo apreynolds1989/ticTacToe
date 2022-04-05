@@ -198,7 +198,7 @@ button.restartButton {
 .winnerCell.circle::after {
     width: calc(var(--winner-mark-size) * .7);
     height: calc(var(--winner-mark-size) * .7);
-    background-color: var(--circle-color);
+    background-color: var(--primary-color);
 }
 
 @media only screen and (max-height: 600px) {
