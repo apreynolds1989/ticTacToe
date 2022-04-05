@@ -9,17 +9,21 @@
     --mark-size: calc(var(--cell-size) * .9);
     --winner-cell-size: 50px;
     --winner-mark-size: calc(var(--winner-cell-size) * .9);
+    --primary-color: black;
+    --secondary-color: purple;
+    --x-color: yellow;
+    --circle-color: silver;
 }
 
 body {
     margin: 0;
-    background-color: blue;
+    background-color: var(--primary-color);
 }
 
 h1 {
     display: flex;
     justify-content: center;
-    color: white;
+    color: var(--secondary-color);
 }
 
 .winner {
@@ -28,10 +32,17 @@ h1 {
     align-items: center;
 }
 
-.winnerText {
+.winnerText.x {
     padding-left: 15px;
     font-weight: bold;
-    color: white;
+    color: var(--x-color);
+    font-size: xx-large;
+}
+
+.winnerText.circle {
+    padding-left: 15px;
+    font-weight: bold;
+    color: var(--circle-color);
     font-size: xx-large;
 }
 
@@ -64,8 +75,8 @@ button[class^='btn'] {
 button.restartButton {
     width: 100px;
     height: 50px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     font-size: x-large;
     border: 1px solid white;
     border-radius: 5%;
@@ -75,7 +86,7 @@ button.restartButton {
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 2px solid white;
+    border: 2px solid var(--secondary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,7 +125,7 @@ button.restartButton {
     position: absolute;
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
-    background-color: white;
+    background-color: var(--x-color);
 }
 
 .cell.x::before {
@@ -135,13 +146,13 @@ button.restartButton {
 .cell.circle::before {
     width: var(--mark-size);
     height: var(--mark-size);
-    background-color: white;
+    background-color: var(--circle-color);
 }
 
 .cell.circle::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
-    background-color: blue;
+    background-color: var(--primary-color);
 }
 
 .winnerCell {
@@ -160,7 +171,7 @@ button.restartButton {
     position: absolute;
     width: calc(var(--winner-mark-size) * .15);
     height: var(--winner-mark-size);
-    background-color: white;
+    background-color: var(--x-color);
 }
 
 .winnerCell.x::before {
@@ -181,11 +192,18 @@ button.restartButton {
 .winnerCell.circle::before {
     width: var(--winner-mark-size);
     height: var(--winner-mark-size);
-    background-color: white;
+    background-color: var(--circle-color);
 }
 
 .winnerCell.circle::after {
     width: calc(var(--winner-mark-size) * .7);
     height: calc(var(--winner-mark-size) * .7);
-    background-color: blue;
+    background-color: var(--circle-color);
+}
+
+@media only screen and (max-height: 600px) {
+    h1,
+    .restart {
+        display: none;
+    }
 }

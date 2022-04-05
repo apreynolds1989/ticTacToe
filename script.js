@@ -146,13 +146,16 @@ function checkWinnerCircle() {
 
 //Function to assign the winning style to the winner div, showing the winner and disabling the buttons so the game cannot be played again until restarted
 let labelWinner = document.querySelector('.winnerCell');
+let winnerTextColor = document.querySelector('.winnerText');
 
 function labelWinnerCell() {
     if (winner === 'x') {
         labelWinner.classList.add('x');
+        winnerTextColor.classList.add('x');
         disableButtons();
     } else if (winner === 'circle') {
         labelWinner.classList.add('circle');
+        winnerTextColor.classList.add('circle');
         disableButtons();
     };
 };
@@ -160,8 +163,10 @@ function labelWinnerCell() {
 function unlabelWinnerCell() {
     if (winner === 'x') {
         labelWinner.classList.remove('x');
+        winnerTextColor.classList.remove('x');
     } else if (winner === 'circle') {
         labelWinner.classList.remove('circle');
+        winnerTextColor.classList.remove('circle');
     };
 };
 
