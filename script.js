@@ -97,7 +97,7 @@ function checkWinnerX() {
         case (cells[1] === 'x' && cells[1] === cells[4] && cells[4] === cells[7]):
             winner = 'x';
             break;
-        case (cells[2] === 'x' && cells[2] === cells[5] && cells[5] === cells[7]):
+        case (cells[2] === 'x' && cells[2] === cells[5] && cells[5] === cells[8]):
             winner = 'x';
             break;
         case (cells[0] === 'x' && cells[0] === cells[4] && cells[4] === cells[8]):
@@ -129,7 +129,7 @@ function checkWinnerCircle() {
         case (cells[1] === 'circle' && cells[1] === cells[4] && cells[4] === cells[7]):
             winner = 'circle';
             break;
-        case (cells[2] === 'circle' && cells[2] === cells[5] && cells[5] === cells[7]):
+        case (cells[2] === 'circle' && cells[2] === cells[5] && cells[5] === cells[8]):
             winner = 'circle';
             break;
         case (cells[0] === 'circle' && cells[0] === cells[4] && cells[4] === cells[8]):
