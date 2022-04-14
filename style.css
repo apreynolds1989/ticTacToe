@@ -5,7 +5,7 @@
 }
 
 :root {
-    --cell-size: 100px;
+    --cell-size: 150px;
     --mark-size: calc(var(--cell-size) * .9);
     --winner-cell-size: 50px;
     --winner-mark-size: calc(var(--winner-cell-size) * .9);
@@ -15,9 +15,17 @@
     --circle-color: silver;
 }
 
+@media only screen and (max-height: 650px) {
+     :root {
+        --cell-size: 75px;
+    }
+}
+
+html,
 body {
     margin: 0;
     background-color: var(--primary-color);
+    height: 100%;
 }
 
 h1 {
@@ -54,8 +62,8 @@ h1 {
 }
 
 #board {
-    width: 100vw;
-    height: 50vh;
+    width: 100%;
+    height: 65%;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -199,11 +207,4 @@ button.restartButton {
     width: calc(var(--winner-mark-size) * .7);
     height: calc(var(--winner-mark-size) * .7);
     background-color: var(--primary-color);
-}
-
-@media only screen and (max-height: 600px) {
-    h1,
-    .restart {
-        display: none;
-    }
 }

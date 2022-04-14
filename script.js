@@ -78,7 +78,7 @@ function setCellValueCircle() {
     };
 };
 
-//Create functions to check win conditions. If the case is true, will set value of winner variable to 'x' or 'circle'
+// functions to check win conditions. If the case is true, will set value of winner variable to 'x' or 'circle'
 
 function checkWinnerX() {
     switch (true) {
