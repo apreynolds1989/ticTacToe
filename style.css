@@ -54,6 +54,13 @@ h1 {
     font-size: xx-large;
 }
 
+.winnerText.draw {
+    padding-left: 15px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: xx-large;
+}
+
 .restart {
     margin-top: 50px;
     display: flex;

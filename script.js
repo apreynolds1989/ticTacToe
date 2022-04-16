@@ -54,7 +54,7 @@ function clickButton() {
         setCellValueX();
         checkWinnerX();
     };
-    if (winner === 'x' || winner === 'circle') {
+    if (winner === 'x' || winner === 'circle' || winner === 'draw') {
         labelWinnerCell();
         showStuff();
     }
@@ -106,6 +106,9 @@ function checkWinnerX() {
         case (cells[2] === 'x' && cells[2] === cells[4] && cells[4] === cells[6]):
             winner = 'x';
             break;
+        case (checkDraw()):
+            winner = 'draw';
+            break;
         default:
             winner = false;
             break;
@@ -138,10 +141,27 @@ function checkWinnerCircle() {
         case (cells[2] === 'circle' && cells[2] === cells[4] && cells[4] === cells[6]):
             winner = 'circle';
             break;
+        case (checkDraw()):
+            winner = 'draw';
+            break;
         default:
             winner = false;
             break;
     };
+};
+
+function checkDraw() {
+    if ((cells[0] === 'x' || cells[0] === 'circle') &&
+        (cells[1] === 'x' || cells[1] === 'circle') &&
+        (cells[2] === 'x' || cells[2] === 'circle') &&
+        (cells[3] === 'x' || cells[3] === 'circle') &&
+        (cells[4] === 'x' || cells[4] === 'circle') &&
+        (cells[5] === 'x' || cells[5] === 'circle') &&
+        (cells[6] === 'x' || cells[6] === 'circle') &&
+        (cells[7] === 'x' || cells[7] === 'circle') &&
+        (cells[8] === 'x' || cells[8] === 'circle')) {
+        return true;
+    } else return false;
 };
 
 //Function to assign the winning style to the winner div, showing the winner and disabling the buttons so the game cannot be played again until restarted
@@ -152,11 +172,16 @@ function labelWinnerCell() {
     if (winner === 'x') {
         labelWinner.classList.add('x');
         winnerTextColor.classList.add('x');
+        winnerTextColor.innerHTML = 'WINS!!!'
         disableButtons();
     } else if (winner === 'circle') {
         labelWinner.classList.add('circle');
         winnerTextColor.classList.add('circle');
+        winnerTextColor.innerHTML = 'WINS!!!'
         disableButtons();
+    } else if (winner === 'draw') {
+        winnerTextColor.classList.add('draw');
+        winnerTextColor.innerHTML = "IT'S A DRAW!!!"
     };
 };
 
@@ -167,6 +192,9 @@ function unlabelWinnerCell() {
     } else if (winner === 'circle') {
         labelWinner.classList.remove('circle');
         winnerTextColor.classList.remove('circle');
+    } else if (winner === 'draw') {
+        labelWinner.classList.remove('draw');
+        winnerTextColor.classList.remove('draw');
     };
 };
 
